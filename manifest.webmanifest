@@ -1,0 +1,17 @@
+{
+  "name": "曼谷五日游 2027",
+  "short_name": "曼谷五日游",
+  "description": "曼谷家庭五日游 2/11–2/15 行程与记账",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#13615C",
+  "theme_color": "#FBF6EC",
+  "lang": "zh-Hans",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

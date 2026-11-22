@@ -1,0 +1,1019 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#FBF6EC" media="(prefers-color-scheme:light)">
+<meta name="theme-color" content="#17110C" media="(prefers-color-scheme:dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="曼谷五日游">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<title>曼谷五日游 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Noto+Serif+SC:wght@700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* Layout：曼谷明信片。单栏、固定顶栏；郑王庙＋昭披耶河当 hero；袈裟橘当重点色，寺庙金当第二色，河水青当主色。 */
+:root{
+  --bg:#FBF6EC;        /* 米白 */
+  --paper:#FFFFFF;
+  --ink:#2A1C12;       /* 柚木深褐 */
+  --ink-2:#6B5A4A;
+  --line:#2A1C12;
+  --blue:#13615C;      /* 昭披耶河青 */
+  --blue-2:#FCE9C8;
+  --orange:#D9541E;    /* 袈裟橘 */
+  --gold:#E2A72E;      /* 寺庙金 */
+  --red:#B8263A;       /* 泰国红 */
+  --green:#3C7D3A;     /* 香蕉叶 */
+  --soft:#F4EAD8;
+  --on-accent:#FFFFFF;
+  --on-gold:#2A1C12;
+  --shadow:0 4px 0 var(--blue);
+  --display:'Noto Serif SC','Songti SC','PingFang SC','Microsoft YaHei',serif;
+  --num:'Fraunces','Georgia',serif;
+  --body:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+  --r:16px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17110C; --paper:#241A12; --ink:#F6EEE2; --ink-2:#C7B6A2; --line:#E5D6C2;
+    --blue:#4FB3A8; --blue-2:#3A2A1A; --soft:#33251A; --shadow:0 4px 0 #0A0705;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17110C; --paper:#241A12; --ink:#F6EEE2; --ink-2:#C7B6A2; --line:#E5D6C2;
+    --blue:#4FB3A8; --blue-2:#3A2A1A; --soft:#33251A; --shadow:0 4px 0 #0A0705;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0;font-family:var(--display);font-weight:700;line-height:1.25;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+.wrap{max-width:720px;margin:0 auto;padding-inline:16px}
+
+/* 顶端固定菜单 */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--paper);border-bottom:2px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.topbar .wrap{display:flex;align-items:center;gap:8px;height:56px;overflow-x:auto;scrollbar-width:none}
+.topbar .wrap::-webkit-scrollbar{display:none}
+.brand{font-family:var(--display);font-weight:700;font-size:21px;white-space:nowrap;padding-right:6px;color:var(--orange)}
+.brand b{color:var(--blue);font-weight:700}
+.topbar nav{display:flex;gap:6px;margin-left:auto}
+.topbar nav a{white-space:nowrap;text-decoration:none;font-size:14px;font-weight:700;padding:4px 11px;border:2px solid var(--line);border-radius:8px;background:var(--paper);transition:transform .15s,background .15s}
+.topbar nav a:hover,.topbar nav a:focus-visible{background:var(--blue);color:var(--on-accent);border-color:var(--blue);transform:translateY(-1px);outline:none}
+main{padding-top:calc(56px + env(safe-area-inset-top,0px))}
+section{padding-block:40px 8px;scroll-margin-top:60px}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.sec-head h2{font-size:28px}
+.sec-head .eyebrow{font-family:var(--num);font-size:12px;letter-spacing:.14em;color:var(--orange);font-weight:800;text-transform:uppercase}
+.sec-head svg{flex:none}
+.lead{margin-bottom:14px;font-size:14px;color:var(--ink-2);font-weight:700;max-width:62ch}
+
+/* 磁磚：四角小花，用在卡片上 */
+.tile{position:relative;background:var(--paper);border:2px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+
+/* 首页 */
+.hero{padding-top:20px}
+.hero-card{background:var(--blue-2);border:2px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow);position:relative}
+.hero-art{display:block;width:100%;height:auto;max-width:100%}
+.hero-body{padding:14px 20px 22px;text-align:center;background:var(--paper);border-top:2px solid var(--line)}
+.h-title{font-family:var(--display);font-weight:700;font-size:clamp(40px,11vw,68px);line-height:1.1;color:var(--blue);letter-spacing:.04em}
+.h-title i{font-style:normal;color:var(--orange)}
+.h-sub{font-family:var(--num);font-weight:600;font-size:clamp(14px,3.6vw,18px);color:var(--ink-2);letter-spacing:.18em;text-transform:uppercase;margin-top:2px}
+.route{margin-top:14px;display:flex;justify-content:center;flex-wrap:wrap;gap:6px;align-items:center;font-weight:900;font-size:14px}
+.route span{border:2px solid var(--line);border-radius:8px;padding:2px 10px;background:var(--paper)}
+.route .bkk{background:var(--orange);color:var(--on-accent);border-color:var(--orange)}
+.route .trip{background:var(--gold);color:var(--on-gold);border-color:var(--gold)}
+.route em{font-style:normal;color:var(--ink-2)}
+.countdown{margin-top:18px;display:flex;justify-content:center;gap:10px}
+.cd{background:var(--paper);border:2px solid var(--line);border-radius:12px;min-width:72px;padding:8px 6px 6px;box-shadow:var(--shadow)}
+.cd .n{font-family:var(--num);font-weight:800;font-size:38px;color:var(--orange);line-height:1;font-variant-numeric:tabular-nums lining-nums}
+.cd .l{font-size:12px;font-weight:700;color:var(--ink-2);letter-spacing:.1em}
+.cd-note{margin-top:10px;font-size:13px;color:var(--ink-2);font-weight:700}
+
+/* 航班卡片 */
+.pcard{overflow:hidden}
+.pcard-head{display:flex;align-items:center;flex-wrap:wrap;gap:8px 10px;padding:12px 16px;border-bottom:2px solid var(--line)}
+.pcard-head h3{font-size:24px}
+.pcard-head .who{margin-left:auto}
+.leg{display:grid;grid-template-columns:1fr auto 1fr;gap:8px 10px;padding:14px 16px;align-items:center}
+.leg + .leg{border-top:2px dashed var(--line)}
+.leg .ap{font-family:var(--num);font-weight:800;font-size:30px;line-height:1}
+.leg .tm{font-family:var(--num);font-size:22px;font-weight:600;font-variant-numeric:tabular-nums lining-nums;line-height:1.1;margin-top:2px}
+.leg .tm sup{font-family:var(--body);font-size:11px;color:var(--red);font-weight:900;margin-left:2px}
+.leg .nm{font-size:12px;color:var(--ink-2);font-weight:700}
+.leg .to{text-align:right}
+.leg .mid{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;font-weight:700;color:var(--ink-2);min-width:84px}
+.leg .mid .line{width:100%;border-top:3px dotted var(--line);margin:4px 0}
+.leg .meta{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;font-size:12px;font-weight:700}
+.leg .meta span{background:var(--soft);border:2px solid var(--line);border-radius:8px;padding:1px 9px}
+.leg .meta .no{background:var(--gold);color:var(--on-gold);border-color:var(--gold)}
+.leg .date{font-size:12px;color:var(--ink-2);font-weight:700;grid-column:1/-1;margin-bottom:-6px}
+.fnote{font-size:13px;color:var(--ink-2);font-weight:700;margin-top:12px}
+
+/* 标签 */
+.tag{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:900;padding:1px 8px;border-radius:7px;border:2px solid var(--line);line-height:1.5;white-space:nowrap}
+.tr-grab{background:#00B14F;color:#FFFFFF;border-color:#00B14F}      /* Grab 绿 */
+.tr-bts{background:#1B8A3E;color:#FFFFFF;border-color:#1B8A3E}
+.tr-mrt{background:#1F4FA3;color:#FFFFFF;border-color:#1F4FA3}
+.tr-boat{background:#E07B1A;color:#FFFFFF;border-color:#E07B1A}
+.tr-van{background:#4B5563;color:#FFFFFF;border-color:#4B5563}
+.tr-walk{background:var(--paper);color:var(--ink)}
+.tr-plane{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.c-bkk{background:var(--orange);color:var(--on-accent);border-color:var(--orange)}
+.c-trip{background:var(--gold);color:var(--on-gold);border-color:var(--gold)}
+.must{background:var(--red);color:#FFFFFF;border-color:var(--red)}
+.book{background:var(--paper);color:var(--red);border-color:var(--red)}
+
+/* 每日行程 */
+.daytabs{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px;margin:0 -2px 10px;scroll-snap-type:x mandatory;scrollbar-width:thin}
+.daytab{flex:0 0 auto;width:92px;scroll-snap-align:start;background:var(--paper);border:2px solid var(--line);border-radius:12px;padding:7px 6px 9px;box-shadow:var(--shadow);text-align:center;transition:transform .15s,background .15s}
+.daytab .d{font-family:var(--num);font-weight:800;font-size:24px;color:var(--blue);line-height:1;font-variant-numeric:lining-nums}
+.daytab .w{font-family:var(--display);font-size:15px;color:var(--ink);margin-top:2px}
+.daytab .k{font-size:11px;font-weight:700;color:var(--ink-2);margin-top:3px;line-height:1.35}
+.daytab:hover{transform:translateY(-2px)}
+.daytab[aria-selected="true"]{background:var(--blue);border-color:var(--blue)}
+.daytab[aria-selected="true"] .d,.daytab[aria-selected="true"] .w,.daytab[aria-selected="true"] .k{color:var(--on-accent)}
+.daytab:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+@media (min-width:700px){ .daytabs{display:grid;grid-template-columns:repeat(5,1fr);overflow:visible} .daytab{width:auto} }
+.day-title{display:grid;gap:4px;margin-bottom:14px}
+.day-title .row{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.day-title h3{font-size:26px}
+.day-title p{color:var(--ink-2);font-size:14px;font-weight:700;max-width:62ch}
+.tl{list-style:none;margin:0;padding:0 0 0 2px;position:relative}
+.tl::before{content:"";position:absolute;left:66px;top:6px;bottom:6px;border-left:3px dotted var(--blue);opacity:.55}
+.ev{display:grid;grid-template-columns:52px 1fr;gap:0 26px;padding:7px 0;position:relative;animation:rise .4s both}
+.ev .t{font-family:var(--num);font-size:16px;font-weight:600;font-variant-numeric:tabular-nums lining-nums;text-align:right;padding-top:12px;line-height:1}
+.ev .dot{position:absolute;left:60px;top:17px;width:15px;height:15px;transform:rotate(45deg);border:2px solid var(--line);background:var(--paper)}
+.ev.is-must .dot{background:var(--orange);border-color:var(--orange)}
+.ev .card{background:var(--paper);border:2px solid var(--line);border-radius:14px;padding:10px 14px 12px;min-width:0}
+.ev.is-must .card{box-shadow:var(--shadow)}
+.ev .tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px}
+.ev h4{font-size:19px;line-height:1.3}
+.ev p{font-size:14px;color:var(--ink-2);margin-top:4px}
+.ev .alt{margin-top:6px;font-size:13px;color:var(--ink);background:var(--soft);border-radius:8px;padding:4px 8px}
+.ev .alt b{color:var(--blue);font-weight:900}
+.ev .links{margin-top:6px;font-size:13px;font-weight:700}
+.ev .links a{color:var(--blue)}
+.split{display:flex;align-items:center;gap:10px;margin:14px 0 6px;font-family:var(--display);font-size:16px;color:var(--ink-2)}
+.split::before,.split::after{content:"";flex:1;border-top:2px dashed var(--line);opacity:.4}
+
+/* 待办 */
+.todo{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.todo li{background:var(--paper);border:2px solid var(--line);border-radius:12px}
+.todo label{display:flex;gap:12px;align-items:flex-start;padding:10px 14px;cursor:pointer}
+.todo input{appearance:none;flex:none;width:24px;height:24px;margin-top:2px;border:2px solid var(--line);border-radius:6px;background:var(--paper);display:grid;place-items:center;transition:background .15s}
+.todo input:checked{background:var(--green);border-color:var(--green)}
+.todo input:checked::after{content:"";width:7px;height:12px;border:solid #FFFFFF;border-width:0 3px 3px 0;transform:translateY(-2px) rotate(45deg)}
+.todo input:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.todo .tx{font-weight:700;font-size:15px}
+.todo .tx .tag{margin-left:6px;vertical-align:1px}
+.todo .sub{display:block;font-weight:400;font-size:13px;color:var(--ink-2)}
+.todo input:checked ~ .tx{text-decoration:line-through;color:var(--ink-2)}
+.todo-foot{margin-top:10px;font-size:13px;color:var(--ink-2);font-weight:700;display:flex;justify-content:space-between;align-items:center}
+.todo-foot button{border:2px solid var(--line);background:var(--paper);border-radius:8px;padding:3px 10px;font-size:12px;font-weight:900}
+
+/* 住宿 */
+.stays{display:grid;gap:16px}
+.stay{overflow:hidden}
+.stay-art{background:var(--blue-2);border-bottom:2px solid var(--line);padding:10px 16px 0}
+.stay-art svg{display:block;width:100%;height:auto;max-width:100%}
+.stay-body{padding:14px 16px 16px}
+.stay-body h3{font-size:24px}
+.stay-body .en{font-size:13px;color:var(--ink-2);font-weight:700}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:12px 0 0;font-size:14px}
+.kv dt{font-weight:900;color:var(--ink-2);white-space:nowrap}
+.kv dd{margin:0;min-width:0}
+.tbd{color:var(--red);font-weight:900}
+
+/* 清单 */
+.places{display:flex;flex-wrap:wrap;gap:8px}
+.place{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border:2px solid var(--line);border-radius:10px;padding:5px 12px;background:var(--paper);font-size:14px;font-weight:700;transition:transform .15s}
+.place:hover{transform:translateY(-2px);background:var(--gold);color:var(--on-gold)}
+.place .area{font-size:11px;color:var(--ink-2);font-weight:900}
+.place .note{font-size:11px;color:var(--ink-2);font-weight:700}
+.place:hover .area,.place:hover .note{color:var(--on-gold)}
+.eat-group{margin-bottom:18px}
+.eat-group h3{font-size:20px;display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.opt-group{margin-bottom:16px}
+.opt-group h3{font-size:20px;display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.opt-group h3 .fit{font-family:var(--body);font-size:12px;font-weight:900;color:var(--ink-2);background:var(--soft);border-radius:8px;padding:1px 9px}
+footer{padding:40px 0 32px;text-align:center;color:var(--ink-2);font-size:13px;font-weight:700}
+
+/* 记账 */
+[hidden]{display:none!important}
+.mtotal{overflow:hidden;margin-bottom:14px}
+.mt-main{padding:14px 16px 12px;display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 14px}
+.mt-main .lb{width:100%;font-size:12px;font-weight:900;color:var(--ink-2);letter-spacing:.08em}
+.mt-main .big{font-family:var(--num);font-weight:800;font-size:40px;line-height:1;color:var(--orange);font-variant-numeric:tabular-nums lining-nums}
+.mt-main .sm{font-size:15px;font-weight:700;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.mchips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.mchips button,.seg button{border:2px solid var(--line);background:var(--paper);border-radius:8px;padding:3px 11px;font-weight:900;font-size:13px}
+.mchips button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.mform{padding:6px 14px 14px;margin-bottom:18px}
+.mrow{display:grid;grid-template-columns:52px 1fr;align-items:center;gap:10px;padding:8px 0;border-bottom:2px dashed var(--soft)}
+.mrow:last-of-type{border-bottom:0}
+.mrow > span{font-size:13px;font-weight:900;color:var(--ink-2)}
+.mrow input,.mrow select,.mset input{font:inherit;color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:8px;padding:7px 10px;width:100%;min-width:0}
+.mrow input:focus-visible,.mrow select:focus-visible,.mset input:focus-visible,.seg button:focus-visible,.mbtn:focus-visible,.mchips button:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+#m-amt{font-family:var(--num);font-size:22px;font-weight:800;font-variant-numeric:tabular-nums lining-nums}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button[aria-pressed="true"]{background:var(--blue);color:var(--on-accent);border-color:var(--blue)}
+.mbtn{display:block;width:100%;margin-top:12px;border:2px solid var(--line);background:var(--orange);color:var(--on-accent);border-radius:12px;padding:10px;font-weight:900;font-size:16px;box-shadow:var(--shadow)}
+.mbtn.ghost{background:var(--paper);color:var(--ink);box-shadow:none}
+.mbtn.warn{color:var(--red)}
+.mh{font-family:var(--display);font-size:20px;margin:6px 0 8px}
+.mbrk{display:grid;gap:8px;margin-bottom:18px}
+.mbrk .b{display:grid;grid-template-columns:44px 1fr auto;gap:8px;align-items:center;font-size:13px;font-weight:700}
+.mbrk .bar{height:12px;border:2px solid var(--line);border-radius:4px;background:var(--bg);overflow:hidden}
+.mbrk .bar i{display:block;height:100%}
+.mbrk .v{font-variant-numeric:tabular-nums}
+.mlist{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:8px}
+.mlist li{background:var(--paper);border:2px solid var(--line);border-radius:12px;padding:8px 12px;display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center}
+.mlist .t{font-weight:900;font-size:15px;min-width:0;overflow-wrap:anywhere}
+.mlist .m{font-size:12px;color:var(--ink-2);font-weight:700;grid-column:1}
+.mlist .a{grid-row:1/3;grid-column:2;text-align:right;font-variant-numeric:tabular-nums}
+.mlist .a b{display:block;font-size:17px}
+.mlist .a small{color:var(--ink-2);font-weight:700}
+.mlist .del{grid-column:1/-1;justify-self:start;border:0;background:none;color:var(--ink-2);font-size:12px;font-weight:900;padding:2px 0;text-decoration:underline}
+.mlist .del.armed{color:var(--red)}
+.mlist .mempty{border:0;background:none;display:block;color:var(--ink-2);font-weight:700;padding:4px 0 10px}
+.mset{padding:12px 14px 14px;display:grid;gap:10px}
+.mset label{font-size:13px;font-weight:900;color:var(--ink-2)}
+.mset .rate{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-weight:700}
+.mset .rate input{width:90px}
+.mset textarea{display:block;width:100%;min-height:0;height:0;padding:0;border:0;opacity:0;position:absolute;pointer-events:none}
+.mmsg{font-size:13px;font-weight:900;color:var(--green);min-height:1.2em}
+
+/* 动画：船轻轻晃、河水流 */
+.sails{transform-box:fill-box;transform-origin:center;animation:spin 16s linear infinite}
+.boat{animation:bob 4s ease-in-out infinite}
+.waves{animation:drift 6s linear infinite}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(-40px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(2px)}}
+@keyframes rise{from{opacity:.001;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){
+  .sails,.boat,.waves,.ev{animation:none}
+  .topbar nav a,.daytab,.place{transition:none}
+}
+@media (min-width:640px){
+  .stays{grid-template-columns:1fr 1fr}
+  .tl::before{left:76px}
+  .ev{grid-template-columns:62px 1fr}
+  .ev .dot{left:70px}
+}
+@media (max-width:420px){
+  .leg .ap{font-size:25px}
+  .leg .tm{font-size:19px}
+  .cd{min-width:62px}
+  .cd .n{font-size:32px}
+}
+/* 换算、分账小工具 */
+.conv{padding:12px 14px 14px;display:grid;gap:10px;margin-bottom:18px}
+.conv .crow{display:grid;grid-template-columns:52px 1fr;gap:10px;align-items:center}
+.conv .crow span{font-size:13px;font-weight:900;color:var(--ink-2)}
+.conv input{font:inherit;font-family:var(--num);font-size:20px;font-weight:800;color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:8px;padding:6px 10px;width:100%;min-width:0}
+.conv input:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.split-box{padding:12px 14px 14px;margin-bottom:18px}
+.split-box .kv{margin-top:6px}
+.ev .links a + a{margin-left:12px}
+.note-sm{font-size:12px;color:var(--ink-2);font-weight:700}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">曼谷<b>五日游</b></div>
+    <nav aria-label="页面菜单">
+      <a href="#home">首页</a>
+      <a href="#flights">航班</a>
+      <a href="#days">行程</a>
+      <a href="#money">记账</a>
+      <a href="#todo">清单</a>
+      <a href="#stay">住宿</a>
+      <a href="#eat">好吃</a>
+      <a href="#options">备案</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- 首页 -->
+<section id="home" class="hero">
+  <div class="wrap">
+    <div class="hero-card">
+      <svg class="hero-art" viewBox="0 0 360 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="曼谷郑王庙、昭披耶河与长尾船插图">
+        <rect width="360" height="180" fill="#FCE9C8"/>
+        <circle cx="70" cy="40" r="16" fill="#E2A72E"/>
+        <g fill="#FFFFFF" opacity=".9">
+          <ellipse cx="150" cy="28" rx="22" ry="7"/><ellipse cx="166" cy="23" rx="14" ry="7"/>
+          <ellipse cx="300" cy="22" rx="18" ry="6"/><ellipse cx="314" cy="18" rx="11" ry="6"/>
+        </g>
+        <!-- 远处城市天际线 -->
+        <g fill="#E9C99A">
+          <rect x="10" y="78" width="18" height="40"/><rect x="32" y="66" width="14" height="52"/><rect x="50" y="84" width="22" height="34"/>
+          <rect x="300" y="70" width="16" height="48"/><rect x="320" y="58" width="12" height="60"/><rect x="336" y="80" width="20" height="38"/>
+        </g>
+        <!-- 郑王庙 主塔 -->
+        <g stroke="#2A1C12" stroke-width="2" stroke-linejoin="round">
+          <path d="M180 14 L186 40 L190 70 L196 118 H164 L170 70 L174 40Z" fill="#F4EAD8"/>
+          <path d="M172 52 H188 M169 76 H191 M166 98 H194" fill="none"/>
+          <path d="M180 14 V4" fill="none"/>
+          <!-- 两侧小塔 -->
+          <path d="M128 60 L132 80 L138 118 H118 L124 80Z" fill="#F4EAD8"/>
+          <path d="M232 60 L236 80 L242 118 H222 L228 80Z" fill="#F4EAD8"/>
+          <rect x="100" y="110" width="160" height="10" fill="#FFFFFF"/>
+        </g>
+        <g fill="#D9541E"><circle cx="180" cy="62" r="2.5"/><circle cx="180" cy="86" r="2.5"/><circle cx="128" cy="96" r="2"/><circle cx="232" cy="96" r="2"/></g>
+        <!-- 河 -->
+        <rect x="0" y="120" width="360" height="60" fill="#13615C"/>
+        <g fill="none" stroke="#FFFFFF" stroke-width="2" opacity=".5" class="waves">
+          <path d="M-20 140 q10 -5 20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0"/>
+          <path d="M-20 164 q10 -5 20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0"/>
+        </g>
+        <!-- 长尾船 -->
+        <g class="boat" stroke="#2A1C12" stroke-width="2" stroke-linejoin="round">
+          <path d="M40 150 Q90 160 140 148 L136 156 Q90 166 46 158Z" fill="#B8263A"/>
+          <path d="M60 150 V140 h40 v8" fill="#E2A72E"/>
+          <path d="M140 148 L156 140" fill="none"/>
+        </g>
+        <!-- 嘟嘟车 -->
+        <g stroke="#2A1C12" stroke-width="2" stroke-linejoin="round">
+          <path d="M262 108 h44 v-18 h-30 Z" fill="#E2A72E"/>
+          <path d="M266 92 h34" fill="none"/>
+          <circle cx="272" cy="112" r="5" fill="#2A1C12"/><circle cx="300" cy="112" r="5" fill="#2A1C12"/>
+        </g>
+      </svg>
+      <div class="hero-body">
+        <div class="h-title">曼谷<i>·</i>五日游</div>
+        <div class="h-sub">Bangkok 2027 · 2/11 – 2/15 · family trip</div>
+        <div class="route" aria-label="路线">
+          <span class="bkk">四面佛</span><em>→</em><span class="trip">大城一日游</span><em>→</em><span class="bkk">大皇宫 · 郑王庙</span><em>→</em><span class="bkk">🎂 爸爸生日</span><em>→</em><span class="bkk">乍都乍</span><em>→</em><span class="bkk">河边夜市</span>
+        </div>
+        <div class="countdown" id="countdown" aria-live="polite">
+          <div class="cd"><div class="n" id="cd-d">—</div><div class="l">天</div></div>
+          <div class="cd"><div class="n" id="cd-h">—</div><div class="l">时</div></div>
+          <div class="cd"><div class="n" id="cd-m">—</div><div class="l">分</div></div>
+        </div>
+        <p class="cd-note" id="cd-note">距离 2/11 08:00 起飞</p>
+        <p class="cd-note">Jw · 爸爸 · 妈妈 · 弟弟　2027 年 2/11（四）– 2/15（一），农历初六起</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 航班 -->
+<section id="flights">
+  <div class="wrap">
+    <div class="sec-head">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="6" fill="#FCE9C8" stroke="#2A1C12" stroke-width="2"/><path d="M7 24 L29 13 L33 15 L22 26 L24 33 L21 33 L17 28 L11 30 L9 28 L14 24Z" fill="#13615C" stroke="#2A1C12" stroke-width="2" stroke-linejoin="round"/></svg>
+      <div><div class="eyebrow">Flights</div><h2>去回程（还没买）</h2></div>
+    </div>
+    <article class="pcard tile">
+      <div class="pcard-head">
+        <h3>方案一 · 亚航</h3>
+        <span class="tag tr-plane">AirAsia · 待定</span>
+        <span class="who tag c-bkk">家人已倾向</span>
+      </div>
+      <div class="leg">
+        <div class="date">2/11 四 · 去程 · <span class="tbd">待定</span> · 4 人同班（Jw 也坐这班）</div>
+        <div><div class="ap">KUL</div><div class="tm">08:00</div><div class="nm">吉隆坡 T2（klia2）</div></div>
+        <div class="mid"><span>约 2h20m</span><div class="line"></div><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 13 L16 6 L19 7 L12 14 L13 18 L11 18 L9 15 L5 16 L4 15 L7 13Z" fill="currentColor"/></svg></div>
+        <div class="to"><div class="ap">DMK</div><div class="tm">09:20</div><div class="nm">曼谷 廊曼 2/11 四</div></div>
+        <div class="meta"><span class="no">班号 待定</span><span>直飞</span><span>泰国时间比马来西亚慢 1 小时</span></div>
+      </div>
+      <div class="leg">
+        <div class="date">2/15 一 · 回程 · <span class="tbd">待定</span> · 爸爸、妈妈、弟弟</div>
+        <div><div class="ap">DMK</div><div class="tm">16:50</div><div class="nm">曼谷 廊曼</div></div>
+        <div class="mid"><span>约 2h20m</span><div class="line"></div><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 13 L16 6 L19 7 L12 14 L13 18 L11 18 L9 15 L5 16 L4 15 L7 13Z" fill="currentColor"/></svg></div>
+        <div class="to"><div class="ap">KUL</div><div class="tm">20:10</div><div class="nm">吉隆坡 T2 2/15 一</div></div>
+        <div class="meta"><span class="no">班号 待定</span><span>直飞</span><span>Jw 不坐这班</span></div>
+      </div>
+      <div class="leg"><div class="meta" style="grid-column:1/-1"><span class="no">行李</span><span>三人合买一件 20kg 托运</span><span>各自 7kg 手提</span></div>
+        <p class="fnote" style="grid-column:1/-1;margin-top:0">在 AirAsia App 订票时一起加行李最便宜，到了机场再加会贵很多。</p></div>
+    </article>
+    <article class="pcard tile">
+      <div class="pcard-head">
+        <h3>方案二 · 泰航（备案）</h3>
+        <span class="tag tr-plane">Thai Airways · 待定</span>
+        <span class="who tag c-trip">每人含 23kg 托运</span>
+      </div>
+      <div class="leg">
+        <div class="date">2/11 四 · 去程 · 三个班次选一 · <span class="tbd">待定</span></div>
+        <div><div class="ap">KUL</div><div class="tm">08:00</div><div class="nm">吉隆坡 T1（KLIA）</div></div>
+        <div class="mid"><span>—</span><div class="line"></div><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 13 L16 6 L19 7 L12 14 L13 18 L11 18 L9 15 L5 16 L4 15 L7 13Z" fill="currentColor"/></svg></div>
+        <div class="to"><div class="ap">BKK</div><div class="tm">--:--</div><div class="nm">曼谷 素万那普</div></div>
+        <div class="meta"><span class="no">或 11:20</span><span>或 13:05</span><span>到达时间订票时再看</span></div>
+      </div>
+      <div class="leg">
+        <div class="date">2/15 一 · 回程 · <span class="tbd">待定</span></div>
+        <div><div class="ap">BKK</div><div class="tm">16:45</div><div class="nm">曼谷 素万那普</div></div>
+        <div class="mid"><span>—</span><div class="line"></div><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 13 L16 6 L19 7 L12 14 L13 18 L11 18 L9 15 L5 16 L4 15 L7 13Z" fill="currentColor"/></svg></div>
+        <div class="to"><div class="ap">KUL</div><div class="tm">--:--</div><div class="nm">吉隆坡 T1</div></div>
+        <div class="meta"><span class="no">班号 待定</span><span>直飞</span></div>
+      </div>
+    </article>
+    <article class="pcard tile">
+      <div class="pcard-head">
+        <h3>Jw</h3>
+        <span class="tag tr-plane">待买</span>
+        <span class="who tag c-bkk">2/15 留在曼谷</span>
+      </div>
+      <div class="leg">
+        <div class="date">2/11 四 · 去程 · <span class="tbd">待定</span></div>
+        <div><div class="ap">KUL</div><div class="tm">08:00</div><div class="nm">跟家人同班</div></div>
+        <div class="mid"><span>—</span><div class="line"></div><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 13 L16 6 L19 7 L12 14 L13 18 L11 18 L9 15 L5 16 L4 15 L7 13Z" fill="currentColor"/></svg></div>
+        <div class="to"><div class="ap">DMK</div><div class="tm">09:20</div><div class="nm">曼谷 廊曼</div></div>
+        <div class="meta"><span class="no">班号 待定</span><span>跟家人方案走</span></div>
+      </div>
+      <div class="leg">
+        <div class="date">2/17 三 · 自己飞台北 · <span class="tbd">待定</span></div>
+        <div><div class="ap">BKK</div><div class="tm">--:--</div><div class="nm">曼谷</div></div>
+        <div class="mid"><span>—</span><div class="line"></div><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 13 L16 6 L19 7 L12 14 L13 18 L11 18 L9 15 L5 16 L4 15 L7 13Z" fill="currentColor"/></svg></div>
+        <div class="to"><div class="ap">TPE</div><div class="tm">--:--</div><div class="nm">台北 桃园</div></div>
+        <div class="meta"><span class="no">班号 待定</span><span>2/16 去泰国办公室</span></div>
+      </div>
+    </article>
+    <p class="fnote">全部还没买。家人决定方案一后，在 AirAsia App 一起买三张＋加 20kg 托运；Jw 另外买同班 KUL→DMK。廊曼（DMK）是亚航用的旧机场，素万那普（BKK）是泰航用的大机场，两个机场离市区都约 45–60 分钟车程。</p>
+  </div>
+</section>
+
+<!-- 每日行程 -->
+<section id="days">
+  <div class="wrap">
+    <div class="sec-head">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="6" fill="#FCE9C8" stroke="#2A1C12" stroke-width="2"/><path d="M20 5 L23 16 L25 33 H15 L17 16Z" fill="#F4EAD8" stroke="#2A1C12" stroke-width="2" stroke-linejoin="round"/><path d="M16 22 H24 M15.5 28 H24.5" stroke="#2A1C12" stroke-width="1.6"/><circle cx="20" cy="18" r="1.8" fill="#D9541E"/></svg>
+      <div><div class="eyebrow">Itinerary</div><h2>每日行程</h2></div>
+    </div>
+    <p class="lead">4 晚都住同一间饭店（建议暹罗／奇隆一带）。曼谷 2 月白天约 33°C，户外排早上、中午回室内或休息、傍晚再出门。寺庙一律要遮肩膀和膝盖。</p>
+    <div class="daytabs" role="tablist" aria-label="选择日期" id="daytabs"></div>
+    <div id="daypanel" role="tabpanel"></div>
+  </div>
+</section>
+
+<!-- 待办清单 -->
+<section id="todo">
+  <div class="wrap">
+    <div class="sec-head">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="6" fill="#FCE9C8" stroke="#2A1C12" stroke-width="2"/><path d="M10 21 L17 28 L30 12" fill="none" stroke="#3C7D3A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div><div class="eyebrow">Checklist</div><h2>出发前打勾</h2></div>
+    </div>
+    <ul class="todo" id="todolist"></ul>
+    <div class="todo-foot"><span id="todo-count">0 / 0 完成</span><button type="button" id="todo-reset">全部清除</button></div>
+  </div>
+</section>
+
+<!-- 记账 -->
+<section id="money">
+  <div class="wrap">
+    <div class="sec-head">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="6" fill="#FCE9C8" stroke="#2A1C12" stroke-width="2"/><circle cx="20" cy="20" r="11" fill="#E2A72E" stroke="#2A1C12" stroke-width="2"/><text x="20" y="25" font-size="14" font-weight="800" text-anchor="middle" fill="#2A1C12" font-family="Fraunces, Georgia, serif">฿</text></svg>
+      <div><div class="eyebrow">Money</div><h2>记账 · 换算</h2></div>
+    </div>
+    <p class="lead">只存在这支手机。泰铢、马币都能记，自动换算。</p>
+
+    <h3 class="mh">快速换算</h3>
+    <div class="conv tile">
+      <div class="crow"><span>泰铢 ฿</span><input id="cv-thb" type="number" inputmode="decimal" min="0" placeholder="0"></div>
+      <div class="crow"><span>马币 RM</span><input id="cv-myr" type="number" inputmode="decimal" min="0" placeholder="0"></div>
+      <p class="note-sm" id="cv-note">1 RM = 7.5 泰铢（可以在下面“设定”改）</p>
+    </div>
+
+    <div class="mtotal tile" aria-live="polite">
+      <div class="mt-main">
+        <div class="lb" id="m-lb">全部支出</div>
+        <div class="big" id="m-eur">฿0</div>
+        <div class="sm" id="m-twd">RM0</div>
+      </div>
+    </div>
+
+    <div class="mchips" id="m-days" role="group" aria-label="筛选日期"></div>
+
+    <form class="mform tile" id="m-form" autocomplete="off">
+      <div class="mrow"><span>金额</span><input id="m-amt" type="number" inputmode="decimal" step="any" min="0" placeholder="0" required></div>
+      <div class="mrow"><span>币别</span><div class="seg" data-f="c"><button type="button" data-v="THB" aria-pressed="true">฿ 泰铢</button><button type="button" data-v="MYR" aria-pressed="false">RM 马币</button></div></div>
+      <div class="mrow"><span>谁付</span><div class="seg" data-f="by"><button type="button" data-v="Jw" aria-pressed="true">Jw</button><button type="button" data-v="爸爸" aria-pressed="false">爸爸</button><button type="button" data-v="妈妈" aria-pressed="false">妈妈</button><button type="button" data-v="弟弟" aria-pressed="false">弟弟</button></div></div>
+      <div class="mrow"><span>付款</span><div class="seg" data-f="pm"><button type="button" data-v="cash" aria-pressed="true">现金</button><button type="button" data-v="card" aria-pressed="false">刷卡</button></div></div>
+      <div class="mrow"><span>分类</span><select id="m-cat"></select></div>
+      <div class="mrow"><span>日期</span><select id="m-day"></select></div>
+      <div class="mrow"><span>备注</span><input id="m-note" type="text" placeholder="例：船面、Grab"></div>
+      <button class="mbtn" type="submit">记一笔</button>
+    </form>
+
+    <div id="m-brk-wrap" hidden>
+      <h3 class="mh">分类</h3>
+      <div class="mbrk" id="m-brk"></div>
+    </div>
+
+    <div id="m-split-wrap" hidden>
+      <h3 class="mh">分账（4 人平分）</h3>
+      <div class="split-box tile"><dl class="kv" id="m-split"></dl><p class="note-sm" style="margin-top:8px">正数＝要拿回，负数＝要还。只算“全部”的记录，不分日期。</p></div>
+    </div>
+
+    <h3 class="mh">明细</h3>
+    <ul class="mlist" id="m-list"></ul>
+
+    <h3 class="mh">设定</h3>
+    <div class="mset tile">
+      <div class="rate"><label for="m-rate">汇率</label>1 马币 RM = <input id="m-rate" type="number" inputmode="decimal" step="0.01" min="0"> 泰铢</div>
+      <textarea id="m-copy" aria-hidden="true" tabindex="-1"></textarea>
+      <button class="mbtn ghost" type="button" id="m-tsv">复制成表格</button>
+      <button class="mbtn ghost warn" type="button" id="m-clear">清空所有记账</button>
+      <p class="mmsg" id="m-msg" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<!-- 住宿 -->
+<section id="stay">
+  <div class="wrap">
+    <div class="sec-head">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="6" fill="#FCE9C8" stroke="#2A1C12" stroke-width="2"/><path d="M11 34 V16 h3 v-4 h3 v-4 h6 v4 h3 v4 h3 V34Z" fill="#13615C" stroke="#2A1C12" stroke-width="2" stroke-linejoin="round"/><rect x="17" y="26" width="6" height="8" fill="#D9541E" stroke="#2A1C12" stroke-width="1.5"/><g fill="#FFFFFF"><rect x="14" y="18" width="4" height="4"/><rect x="22" y="18" width="4" height="4"/></g></svg>
+      <div><div class="eyebrow">Stay</div><h2>住宿（待订）</h2></div>
+    </div>
+    <article class="stay tile">
+      <div class="stay-art">
+        <svg viewBox="0 0 300 100" aria-hidden="true">
+          <g stroke="#2A1C12" stroke-width="2.2" stroke-linejoin="round">
+            <path d="M30 100 V30 h30 V100Z" fill="#FFFFFF"/>
+            <path d="M70 100 V14 h26 V100Z" fill="#13615C"/>
+            <path d="M106 100 V44 h34 V100Z" fill="#E2A72E"/>
+            <path d="M200 100 V36 h24 V100Z" fill="#B8263A"/>
+            <path d="M232 100 V54 h40 V100Z" fill="#FFFFFF"/>
+          </g>
+          <g fill="#2A1C12"><rect x="36" y="38" width="6" height="6"/><rect x="48" y="38" width="6" height="6"/><rect x="36" y="52" width="6" height="6"/><rect x="48" y="52" width="6" height="6"/><rect x="112" y="52" width="6" height="6"/><rect x="126" y="52" width="6" height="6"/><rect x="240" y="62" width="6" height="6"/><rect x="256" y="62" width="6" height="6"/></g>
+          <g fill="#FFFFFF"><rect x="76" y="22" width="5" height="6"/><rect x="86" y="22" width="5" height="6"/><rect x="76" y="36" width="5" height="6"/><rect x="86" y="36" width="5" height="6"/></g>
+          <!-- BTS 轻轨 -->
+          <rect x="0" y="80" width="300" height="6" fill="#6B5A4A"/>
+          <g stroke="#2A1C12" stroke-width="2"><rect x="150" y="66" width="60" height="14" rx="4" fill="#3C7D3A"/></g>
+          <g fill="#FFFFFF"><rect x="156" y="70" width="8" height="5"/><rect x="168" y="70" width="8" height="5"/><rect x="180" y="70" width="8" height="5"/><rect x="192" y="70" width="8" height="5"/></g>
+        </svg>
+      </div>
+      <div class="stay-body">
+        <h3>曼谷 四晚</h3>
+        <div class="en">2/11 四 入住，2/15 一 退房（Jw 自己另外续住到 2/17）</div>
+        <dl class="kv">
+          <dt>状态</dt><dd><span class="tbd">还没订</span></dd>
+          <dt>建议区域</dt><dd>暹罗 Siam／奇隆 Chidlom：四面佛、Central World、Siam Paragon 都在附近，BTS 轻轨方便；2/12 一日游集合点 MBK 走路可到。</dd>
+          <dt>房型</dt><dd>4 个人：两间双床房，或一间家庭房／公寓式饭店</dd>
+          <dt>注意</dt><dd>过年期间房价贵、房间少，要早点订；选可免费取消的方案比较安心。</dd>
+          <dt>退房</dt><dd>2/15 12:00 退房，行李寄放前台，13:15 出发去廊曼。</dd>
+        </dl>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 好吃 -->
+<section id="eat">
+  <div class="wrap">
+    <div class="sec-head">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="6" fill="#FCE9C8" stroke="#2A1C12" stroke-width="2"/><path d="M8 20 h24 a12 10 0 0 1 -24 0Z" fill="#E2A72E" stroke="#2A1C12" stroke-width="2" stroke-linejoin="round"/><path d="M15 16 q2 -4 0 -8 M20 16 q2 -4 0 -8 M25 16 q2 -4 0 -8" fill="none" stroke="#D9541E" stroke-width="2" stroke-linecap="round"/></svg>
+      <div><div class="eyebrow">Must eat</div><h2>曼谷好吃的</h2></div>
+    </div>
+    <p class="lead">曼谷常见推荐，<b>示意，未逐一查证</b>。点了直接开 Google Maps，营业时间出发前再确认。</p>
+    <div id="eat-list"></div>
+  </div>
+</section>
+
+<!-- 备案 -->
+<section id="options">
+  <div class="wrap">
+    <div class="sec-head">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="6" fill="#FCE9C8" stroke="#2A1C12" stroke-width="2"/><path d="M12 30 L20 8 L28 30 L20 25Z" fill="#13615C" stroke="#2A1C12" stroke-width="2" stroke-linejoin="round"/></svg>
+      <div><div class="eyebrow">Plan B</div><h2>备案口袋名单</h2></div>
+    </div>
+    <p class="lead">下雨、太热、累了或时间多出来时的替代。</p>
+    <div id="options-list"></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p>2027.2.11 – 2.15 · Jw · 爸爸 · 妈妈 · 弟弟</p>
+</footer>
+<script>
+(function(){
+  'use strict';
+  var TR = {
+    plane:['飞机','tr-plane'], grab:['Grab','tr-grab'], bts:['BTS 轻轨','tr-bts'], mrt:['MRT 地铁','tr-mrt'],
+    boat:['船','tr-boat'], van:['旅游车','tr-van'], walk:['步行','tr-walk']
+  };
+  var M = 'https://www.google.com/maps/search/?api=1&query=';
+  function map(q){ return M + encodeURIComponent(q); }
+  var KK_AYU = 'https://www.kkday.com/zh-tw/product/152912-ayutthaya-day-tour-from-bangkok-thailand';
+  var KK_FLT = 'https://www.kkday.com/zh-tw/product/152911-floating-market-day-tour-from-bangkok-thailand';
+
+  var DAYS = [
+    {
+      d:'2/11', w:'四', c:'bkk', k:'抵达 · 四面佛',
+      title:'吉隆坡 → 曼谷 · 四面佛 · 夜市',
+      note:'农历初六。早班机到廊曼，先去饭店寄放行李，下午在暹罗一带逛商场（有冷气），晚上去 Jodd Fairs 夜市。第一天早点休息。',
+      items:[
+        {t:'05:30', tr:'grab', name:'出门去吉隆坡机场 T2', p:'08:00 起飞，国际线建议提早 2 小时到 klia2 报到、托运那件 20kg 行李。'},
+        {t:'08:00', tr:'plane', must:true, name:'亚航 KUL → DMK 廊曼', p:'飞约 2 小时 20 分，泰国时间 09:20 到（泰国比马来西亚慢 1 小时，手机会自动改）。班机还没买，以订票为准。'},
+        {t:'09:20', tr:'walk', name:'入境、拿行李、买电话卡', p:'没买 eSIM 的话，入境大厅有 AIS／TrueMove／dtac 柜台卖游客卡。顺便换一点泰铢现金。'},
+        {t:'10:30', tr:'grab', must:true, name:'Grab 到饭店', p:'廊曼到暹罗／奇隆约 45–60 分钟，看塞车。4 人＋行李叫 GrabCar XL 或 6 人座。高速公路过路费通常乘客付。', alt:'不想叫车：机场 A1 巴士到 BTS 莫奇站 Mo Chit 再转 BTS，比较便宜但要搬行李。'},
+        {t:'11:30', tr:'walk', name:'饭店寄放行李', p:'还没到入住时间（通常 14:00）就先寄放，轻装出门。'},
+        {t:'12:00', tr:'walk', name:'午餐', p:'饭店附近或商场美食街随便吃，第一顿不要排太远。Central World、Siam Paragon 地下都有美食区。'},
+        {t:'14:00', tr:'walk', must:true, name:'四面佛 Erawan Shrine', p:'在奇隆站和 Central World 旁边，路口小小一座，香火很旺。拜完可以看泰国舞者还愿跳舞。', q:'Erawan Shrine Bangkok'},
+        {t:'14:45', tr:'walk', name:'Central World／Siam Paragon 逛街吹冷气', p:'两间商场用空中走道连起来。下午最热的时候留在室内。逛累了回饭店 check-in 休息一下。', q:'Siam Paragon'},
+        {t:'18:30', tr:'mrt', must:true, name:'Jodd Fairs 拉玛九夜市', p:'天天开，傍晚到深夜。MRT 拉玛九站 Phra Ram 9 走路约 5 分钟，或直接 Grab。必吃火山排骨（Leng Saap），一大盘适合 4 个人分。', q:'Jodd Fairs Rama 9', alt:'唐人街 耀华力路 Yaowarat：晚上整条路都是路边摊（粿条、鱼翅燕窝、烤海鲜、甜品），过年期间通常有灯饰，庆典是否举办要看当年公告。MRT 龙莲寺站 Wat Mangkon。'},
+        {t:'21:00', tr:'grab', name:'回饭店早点睡', p:'明天一日游 8 点多要集合。'}
+      ]
+    },
+    {
+      d:'2/12', w:'五', c:'trip', k:'大城一日游',
+      title:'KKday 大城 Ayutthaya 一日游',
+      note:'跟团一天，不用自己找车。主选大城古城；备选水上市场。Jw 在 KKday 订：Jw 自己免费、家人 6 折。2 天前可以免费取消。',
+      items:[
+        {t:'08:00', tr:'walk', must:true, book:true, name:'MBK 的 Donki 前集合', p:'集合时间在 8:00–9:00 之间，确切时间看 KKday 订单。从暹罗／奇隆的饭店走路或坐 BTS 到国家体育场站 National Stadium 就到 MBK。', q:'Don Don Donki MBK Center', u:KK_AYU},
+        {t:'09:00', tr:'van', name:'出发去大城', p:'全程约 10 小时。服装：要遮肩膀和膝盖，邦芭茵夏宫不能穿短裤、无袖。带帽子、防晒、水。'},
+        {t:'10:30', tr:'walk', name:'邦芭茵夏宫 Bang Pa-In', p:'泰国皇室的夏宫，花园很漂亮，可以慢慢拍照。', q:'Bang Pa-In Royal Palace'},
+        {t:'12:30', tr:'walk', name:'Talad Kung 午餐（自费）', p:'在古城附近吃午餐，费用自己付，带一点泰铢现金。'},
+        {t:'14:00', tr:'walk', must:true, name:'大城古寺', p:'几座古寺：崖差蒙空寺 Wat Yai Chai Mongkhon、玛哈泰寺（树根里的佛头，拍照要蹲低，头不能比佛头高）、柴瓦塔那兰寺 Wat Chaiwatthanaram。可以租泰服拍照。', q:'Wat Mahathat Ayutthaya'},
+        {t:'18:00', tr:'van', name:'回到曼谷', p:'大约傍晚回到市区，实际时间看塞车。'},
+        {t:'18:30', tr:'walk', must:true, name:'班塔通路 Banthat Thong 晚餐', p:'朱拉隆功大学旁的美食街，约 16:00 开到半夜，18:00–22:00 最多人，建议 17:30 前到（一日游回来如果晚了，就直接从 MBK 过去）。从 BTS 国家体育场站 National Stadium 走 5–10 分钟，或 Grab；离 Siam／MBK 很近。', q:'Banthat Thong Road Bangkok'},
+        {t:'20:30', tr:'walk', name:'泰式按摩（吃完有力气再去）', p:'饭店附近做泰式按摩或脚底按摩，走了一天放松一下。太累就直接回饭店。'},
+        {split:'备选：水上市场一日游'},
+        {t:'备选', tr:'van', name:'美功铁道市场＋丹嫩莎朵水上市场', p:'一样在 MBK Donki 集合，约 7–9 小时。看火车慢慢开过市场、坐船逛水上市场。周五至周日可以加购安帕瓦萤火虫（晚上回来比较晚）。', u:KK_FLT}
+      ]
+    },
+    {
+      d:'2/13', w:'六', c:'bkk', k:'🎂 爸爸生日',
+      title:'🎂 爸爸生日 · 大皇宫 → 卧佛寺 → 郑王庙 → 生日晚餐',
+      note:'今天是爸爸生日！寺庙日：一早去大皇宫避开中午的热，傍晚在郑王庙看黄昏，然后河边晚餐帮爸爸庆生（餐厅待订），想去再逛唐人街。今天穿遮肩膀、遮膝盖的衣服，鞋子好走。',
+      items:[
+        {t:'08:00', tr:'grab', name:'Grab 去大皇宫', p:'从暹罗一带约 20–30 分钟。'},
+        {t:'08:30', tr:'walk', must:true, name:'大皇宫＋玉佛寺', p:'门票约 500 泰铢一人（以现场为准），15:30 停止售票。要遮肩膀和膝盖，不合格门口要买或租衣服。门口会有人说“今天关门”拉你去别的地方，不要理。', q:'Grand Palace Bangkok'},
+        {t:'11:00', tr:'walk', must:true, name:'卧佛寺 Wat Pho', p:'走路约 10 分钟。46 米长的金色卧佛。寺里也有泰式按摩学校，可以按一下脚。', q:'Wat Pho'},
+        {t:'12:30', tr:'walk', name:'午餐＋休息', p:'卧佛寺附近或码头一带吃饭，找有冷气的咖啡店坐一下，中午最热。'},
+        {t:'15:30', tr:'boat', must:true, name:'坐渡船过河去郑王庙', p:'Tha Tien 码头坐渡船过河，几分钟就到，船票几泰铢。', q:'Wat Arun'},
+        {t:'16:00', tr:'walk', must:true, name:'郑王庙 Wat Arun', p:'傍晚看黄昏最好看，日落约 18:20。看完坐渡船回 Tha Tien 这边，河边餐厅就在码头附近，可以边吃边看郑王庙亮灯。', q:'Wat Arun'},
+        {t:'18:30', tr:'walk', must:true, book:true, name:'🎂 爸爸生日晚餐（自己找餐厅，待订）', p:'三个候选：① Supanniga Eating Room（Tha Tien，河边看郑王庙，泰菜，要订位）② Sala Rattanakosin 或 The Deck（同一区河景餐厅）③ 唐人街 T&K Seafood（大圆桌海鲜，16:00 开，人很多）。蛋糕自备，或订位时请餐厅准备。', q:'Supanniga Eating Room Tha Tien', alt:'河景餐厅订不到：直接去唐人街 T&K Seafood，不用订位但要排队。'},
+        {t:'20:30', tr:'grab', name:'想去再逛唐人街 耀华力路', p:'吃完还有力气就 Grab 到唐人街（约 10 分钟），晚上整条路都是路边摊和甜品；过年期间通常有灯饰，庆典是否举办要看当年公告。累了就直接回饭店。', q:'Yaowarat Road'},
+        {t:'22:00', tr:'grab', name:'回饭店', p:'Grab 回饭店；从唐人街也可以坐 MRT 龙莲寺站 Wat Mangkon。'}
+      ]
+    },
+    {
+      d:'2/14', w:'日', c:'bkk', k:'乍都乍 · 河边',
+      title:'乍都乍周末市集 → 休息 → 河边夜景',
+      note:'2/14 是情人节，晚餐餐厅一定要先订。乍都乍只在周六日开，早去，中午很热；下午回饭店休息，傍晚去河边。',
+      items:[
+        {t:'09:00', tr:'bts', must:true, name:'乍都乍周末市集 Chatuchak', p:'周六日 09:00–18:00。BTS 莫奇站 Mo Chit 或 MRT 乍都乍公园站。很大，先约好走散在哪个出口集合。椰子冰淇淋、泰式奶茶边走边吃。', q:'Chatuchak Weekend Market'},
+        {t:'13:00', tr:'grab', name:'回饭店休息', p:'中午太热，回去冲凉、睡一下。'},
+        {t:'16:30', tr:'grab', must:true, book:true, name:'ICONSIAM 或 Asiatique 河边夜市', p:'ICONSIAM：大商场，里面有室内水上市场美食区，晚上河边有喷水秀。Asiatique：河边夜市＋摩天轮，比较轻松。两个选一个。情人节晚餐要先订位。', q:'ICONSIAM', alt:'Asiatique The Riverfront（可坐免费接驳船从 BTS 沙潘塔克辛站 Saphan Taksin 过去）'},
+        {t:'21:00', tr:'grab', name:'回饭店收行李', p:'明天中午退房，今晚先把行李收好。'}
+      ]
+    },
+    {
+      d:'2/15', w:'一', c:'bkk', k:'回程 · Jw 留下',
+      title:'伴手礼 → 退房 → 廊曼回吉隆坡',
+      note:'早上买伴手礼或按摩，中午退房。曼谷下午会塞车，提早 3.5 小时出发去廊曼。Jw 不跟家人回去，留在曼谷（2/16 去泰国办公室，2/17 自己飞台北）。',
+      items:[
+        {t:'09:30', tr:'walk', name:'伴手礼／按摩', p:'Big C 超市（干果、零食、调味包）或药妆店（Boots、Watsons）。或者最后去做一次按摩。', q:'Big C Ratchadamri'},
+        {t:'12:00', tr:'walk', must:true, name:'退房', p:'行李先寄放前台，出门前检查护照。'},
+        {t:'13:15', tr:'grab', must:true, name:'出发去廊曼 DMK', p:'提早约 3.5 小时出发，周一下午可能塞车。叫 GrabCar XL 放行李。'},
+        {t:'14:30', tr:'walk', name:'报到、托运', p:'亚航在廊曼 T1 国际线。20kg 那件行李记得过磅，免税店买东西注意手提 7kg。'},
+        {t:'16:50', tr:'plane', must:true, name:'亚航 DMK → KUL', p:'爸爸、妈妈、弟弟三个人。马来西亚时间 20:10 到吉隆坡 T2。班机还没买，以订票为准。'},
+        {split:'Jw 自己'},
+        {t:'2/16', tr:'bts', name:'Jw 去泰国办公室', p:'2/15 起 Jw 自己续住曼谷。'},
+        {t:'2/17', tr:'plane', name:'Jw 曼谷 → 台北', p:'BKK → TPE，机票还没买。'}
+      ]
+    }
+  ];
+
+  var TODO = [
+    ['家人决定机票方案', '已倾向方案一：亚航 KUL⇄DMK；备案泰航 KUL⇄BKK（每人含 23kg）'],
+    ['AirAsia App 买 3 张票＋加 20kg', '爸爸、妈妈、弟弟；订票时一起加一件 20kg 托运最便宜，手提各 7kg', true],
+    ['Jw 买同班 KUL → BKK', '跟家人同一班去程', true],
+    ['Jw 买 2/17 BKK → TPE', '自己飞台北', true],
+    ['订饭店（4 晚）', '暹罗／奇隆一带，2/11–2/15；过年期间房贵房少，越早越好', true],
+    ['Jw 在 KKday 订一日游', '2/12 大城一日游（备选水上市场）；Jw 免费、家人 6 折；2 天前可以免费取消', true],
+    ['2/13 爸爸生日晚餐订位＋蛋糕', '候选：Supanniga Eating Room（Tha Tien）／Sala Rattanakosin 或 The Deck／唐人街 T&K Seafood；蛋糕自备或请餐厅准备', true],
+    ['2/14 情人节晚餐订位', 'ICONSIAM 或 Asiatique 一带的餐厅', true],
+    ['买 eSIM／泰国电话卡', '出发前买 eSIM，或到廊曼机场柜台买游客卡'],
+    ['下载 Grab', '先绑好卡；4 人＋行李叫 GrabCar XL'],
+    ['带遮膝衣服去寺庙', '大皇宫、卧佛寺、夏宫：遮肩膀、遮膝盖，不能短裤无袖；可带一条薄长裤或纱笼'],
+    ['换一点泰铢现金', '路边摊、夜市、渡船都用现金'],
+    ['防晒、帽子、水壶', '2 月白天约 33°C；也带小外套，商场冷气很强'],
+    ['护照有效期', '入境泰国护照要有 6 个月以上效期']
+  ];
+
+  var EAT = [
+    {area:'泰式经典', c:'bkk', items:[
+      ['船面 Boat Noodle','胜利纪念碑 船面巷','Boat Noodle Alley Victory Monument'],
+      ['Thipsamai 泰式炒河粉','老字号 Pad Thai','Thipsamai Pad Thai'],
+      ['芒果糯米饭','Mae Varee 通罗','Mae Varee Mango Sticky Rice'],
+      ['冬阴功','酸辣虾汤 各大餐厅都有','Tom Yum Goong Bangkok'],
+      ['海南鸡饭','Go-Ang 水门 粉红制服','Go-Ang Pratunam Chicken Rice']
+    ]},
+    {area:'美食街 · 唐人街 · 夜市', c:'trip', items:[
+      ['班塔通路 Banthat Thong','朱拉美食街 16:00 到半夜','Banthat Thong Road Bangkok'],
+      ['鱼翅燕窝','耀华力路 路边摊','Yaowarat Road bird nest'],
+      ['粿条 Kuay Jab','Nai Ek 卷粿条','Nai Ek Roll Noodles'],
+      ['T&K 海鲜','绿衣服 路边海鲜','T&K Seafood Yaowarat'],
+      ['火山排骨 Leng Saap','Jodd Fairs 拉玛九','Jodd Fairs Rama 9']
+    ]}
+  ];
+
+  var OPTIONS = [
+    {area:'一日游', fit:'换一天或换口味', items:[
+      ['水上市场一日游','美功铁道＋丹嫩莎朵 KKday',KK_FLT],
+      ['Safari World','野生动物园 适合全家']
+    ]},
+    {area:'河边', fit:'傍晚', items:[
+      ['ICONSIAM','大商场＋室内水上市场'],['Asiatique The Riverfront','河边夜市 摩天轮']
+    ]},
+    {area:'太热或下雨', fit:'室内', items:[
+      ['SEA LIFE Bangkok Ocean World','Siam Paragon 地下 水族馆'],['MBK Center','平价商场 伴手礼'],['Health Land Spa','连锁按摩 环境好'],['Terminal 21 Asok','美食街便宜']
+    ]}
+  ];
+
+  var state = {day:0};
+  try { var s = JSON.parse(localStorage.getItem('bkk-view')||'{}'); if (s.day in DAYS) state.day = s.day; } catch(e){}
+  var hm = location.hash.match(/^#day([1-5])$/); if (hm) state.day = +hm[1] - 1;
+
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  var CTRY = {bkk:['曼谷','c-bkk'], trip:['一日游','c-trip']};
+
+  function renderTabs(){
+    document.getElementById('daytabs').innerHTML = DAYS.map(function(d,i){
+      return '<button type="button" class="daytab" role="tab" id="tab-'+i+'" aria-selected="'+(i===state.day)+'" aria-controls="daypanel" data-i="'+i+'">'+
+        '<div class="d">'+esc(d.d)+'</div><div class="w">星期'+esc(d.w)+'</div><div class="k">'+esc(d.k)+'</div></button>';
+    }).join('');
+  }
+
+  function renderDay(){
+    var d = DAYS[state.day];
+    var html = '<div class="day-title"><div class="row"><span class="tag '+CTRY[d.c][1]+'">'+CTRY[d.c][0]+'</span><h3>'+esc(d.title)+'</h3></div><p>'+esc(d.note)+'</p></div><ol class="tl">';
+    d.items.forEach(function(it, idx){
+      if (it.split){ html += '<li class="split">'+esc(it.split)+'</li>'; return; }
+      var tr = TR[it.tr];
+      var links = '';
+      if (it.q) links += '<a href="'+map(it.q)+'" target="_blank" rel="noopener">在 Google Maps 打开 ↗</a>';
+      if (it.u) links += '<a href="'+esc(it.u)+'" target="_blank" rel="noopener">KKday 商品页 ↗</a>';
+      html += '<li class="ev'+(it.must?' is-must':'')+'" style="animation-delay:'+(Math.min(idx,12)*30)+'ms">'+
+        '<div class="t">'+esc(it.t)+'</div><span class="dot" aria-hidden="true"></span>'+
+        '<div class="card"><div class="tags">'+
+          (tr ? '<span class="tag '+tr[1]+'">'+tr[0]+'</span>' : '')+
+          (it.must ? '<span class="tag must">必去</span>' : '')+
+          (it.book ? '<span class="tag book">要先订</span>' : '')+
+        '</div><h4>'+esc(it.name)+'</h4>'+
+        (it.p ? '<p>'+esc(it.p)+'</p>' : '')+
+        (it.alt ? '<p class="alt"><b>备案</b> '+esc(it.alt)+'</p>' : '')+
+        (links ? '<div class="links">'+links+'</div>' : '')+
+        '</div></li>';
+    });
+    html += '</ol>';
+    document.getElementById('daypanel').innerHTML = html;
+    document.querySelectorAll('.daytab').forEach(function(b){ b.setAttribute('aria-selected', String(+b.dataset.i === state.day)); });
+    try { localStorage.setItem('bkk-view', JSON.stringify(state)); } catch(e){}
+  }
+
+  document.getElementById('daytabs').addEventListener('click', function(e){
+    var b = e.target.closest('.daytab'); if (!b) return;
+    state.day = +b.dataset.i; renderDay();
+  });
+  document.getElementById('daytabs').addEventListener('keydown', function(e){
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    state.day = (state.day + (e.key === 'ArrowRight' ? 1 : DAYS.length - 1)) % DAYS.length;
+    renderDay(); document.getElementById('tab-'+state.day).focus();
+  });
+
+  /* 待办 */
+  var done = {};
+  try { done = JSON.parse(localStorage.getItem('bkk-todo')||'{}') || {}; } catch(e){ done = {}; }
+  function renderTodo(){
+    document.getElementById('todolist').innerHTML = TODO.map(function(t,i){
+      return '<li><label><input type="checkbox" id="todo-'+i+'" data-i="'+i+'"'+(done[i]?' checked':'')+'><span class="tx">'+esc(t[0])+(t[2]?'<span class="tag book">要先订</span>':'')+'<span class="sub">'+esc(t[1])+'</span></span></label></li>';
+    }).join('');
+    countTodo();
+  }
+  function countTodo(){
+    var n = TODO.filter(function(_,i){ return done[i]; }).length;
+    document.getElementById('todo-count').textContent = n + ' / ' + TODO.length + ' 完成';
+  }
+  document.getElementById('todolist').addEventListener('change', function(e){
+    var cb = e.target; if (cb.type !== 'checkbox') return;
+    done[cb.dataset.i] = cb.checked;
+    try { localStorage.setItem('bkk-todo', JSON.stringify(done)); } catch(e2){}
+    countTodo();
+  });
+  document.getElementById('todo-reset').addEventListener('click', function(){
+    done = {};
+    try { localStorage.removeItem('bkk-todo'); } catch(e){}
+    renderTodo();
+  });
+
+  /* 好吃 */
+  document.getElementById('eat-list').innerHTML = EAT.map(function(g){
+    return '<div class="eat-group"><h3><span class="tag '+CTRY[g.c][1]+'">'+esc(g.area)+'</span></h3><div class="places">'+
+      g.items.map(function(p){
+        return '<a class="place" href="'+map(p[2])+'" target="_blank" rel="noopener"><span class="area">'+esc(p[1])+'</span>'+esc(p[0])+'</a>';
+      }).join('')+'</div></div>';
+  }).join('');
+
+  /* 备案 */
+  document.getElementById('options-list').innerHTML = OPTIONS.map(function(g){
+    return '<div class="opt-group"><h3>'+esc(g.area)+'<span class="fit">'+esc(g.fit)+'</span></h3><div class="places">'+
+      g.items.map(function(p){
+        var href = p[2] ? esc(p[2]) : map(p[0]);
+        return '<a class="place" href="'+href+'" target="_blank" rel="noopener">'+esc(p[0])+'<span class="note">'+esc(p[1])+'</span></a>';
+      }).join('')+'</div></div>';
+  }).join('');
+
+  /* 记账：存在这支手机的 localStorage（bkk-exp、bkk-rate）；金额统一换成泰铢计算 */
+  var M_KEY = 'bkk-exp', R_KEY = 'bkk-rate';
+  var PEOPLE = ['Jw', '爸爸', '妈妈', '弟弟'];
+  var M_DAYS = ['出发前', '2/11', '2/12', '2/13', '2/14', '2/15'];
+  var M_CATS = ['餐饮', '交通', '门票', '购物', '住宿', '按摩', '其他'];
+  var M_CATC = {'餐饮':'var(--orange)','交通':'var(--blue)','门票':'var(--green)','购物':'var(--gold)','住宿':'var(--red)','按摩':'#8E5BA8','其他':'var(--ink-2)'};
+  var M_PM = {cash:'现金', card:'刷卡'};
+  function mLoad(k, d){ try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch(e){ return d; } }
+  function mSave(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
+  var book = mLoad(M_KEY, null);
+  if (!book || !Array.isArray(book.items)) book = {items:[]};
+  var rate = +mLoad(R_KEY, 7.5) || 7.5;   /* 1 RM = rate 泰铢 */
+  var mFilter = 'all';
+  var form = {c:'THB', pm:'cash', by:'Jw'};
+
+  function thb(e){ return e.c === 'MYR' ? e.a * rate : e.a; }
+  function fmt(n, dp){ return n.toLocaleString('en-US', {minimumFractionDigits:dp||0, maximumFractionDigits:dp||0}); }
+  function money(n){ return '฿' + fmt(n, 0); }
+  function rm(n){ return 'RM' + fmt(n, 2); }
+  function msg(t){ var el = document.getElementById('m-msg'); el.textContent = t; clearTimeout(msg.t); msg.t = setTimeout(function(){ el.textContent = ''; }, 3500); }
+  function todayDay(){
+    var now = new Date(Date.now() + 7*3600000).toISOString().slice(0,10);   /* 泰国时间 UTC+7 */
+    if (now < '2027-02-11') return '出发前';
+    if (now > '2027-02-15') return '2/15';
+    return '2/' + String(+now.slice(8,10));
+  }
+
+  document.getElementById('m-cat').innerHTML = M_CATS.map(function(c){ return '<option value="'+c+'">'+c+'</option>'; }).join('');
+  document.getElementById('m-day').innerHTML = M_DAYS.map(function(d){ return '<option value="'+d+'"'+(d===todayDay()?' selected':'')+'>'+d+'</option>'; }).join('');
+  document.getElementById('m-rate').value = rate;
+
+  /* 快速换算 */
+  var cvT = document.getElementById('cv-thb'), cvM = document.getElementById('cv-myr');
+  function cvNote(){ document.getElementById('cv-note').textContent = '1 RM = ' + rate + ' 泰铢（可以在下面“设定”改）'; }
+  cvT.addEventListener('input', function(){ var v = parseFloat(cvT.value); cvM.value = v >= 0 ? (v / rate).toFixed(2) : ''; });
+  cvM.addEventListener('input', function(){ var v = parseFloat(cvM.value); cvT.value = v >= 0 ? Math.round(v * rate) : ''; });
+  cvNote();
+
+  function renderSplit(){
+    var all = book.items, tot = all.reduce(function(s,e){ return s + thb(e); }, 0);
+    document.getElementById('m-split-wrap').hidden = !all.length;
+    if (!all.length) return;
+    var share = tot / PEOPLE.length, paid = {};
+    PEOPLE.forEach(function(p){ paid[p] = 0; });
+    all.forEach(function(e){ var who = e.by || 'Jw'; paid[who] = (paid[who]||0) + thb(e); });
+    document.getElementById('m-split').innerHTML = '<dt>每人</dt><dd>'+money(share)+'（'+rm(share/rate)+'）</dd>' + PEOPLE.map(function(p){
+      var bal = paid[p] - share;
+      return '<dt>'+esc(p)+'</dt><dd>付了 '+money(paid[p])+'，'+(bal >= 0 ? '要拿回 ' : '要还 ')+money(Math.abs(bal))+'（'+rm(Math.abs(bal)/rate)+'）</dd>';
+    }).join('');
+  }
+
+  function renderMoney(){
+    var items = book.items.slice().sort(function(a,b){ return (M_DAYS.indexOf(b.d) - M_DAYS.indexOf(a.d)) || (b.ts - a.ts); });
+    var shown = mFilter === 'all' ? items : items.filter(function(e){ return e.d === mFilter; });
+    var tot = shown.reduce(function(s,e){ return s + thb(e); }, 0);
+    document.getElementById('m-lb').textContent = mFilter === 'all' ? '全部支出' : mFilter + ' 支出';
+    document.getElementById('m-eur').textContent = money(tot);
+    document.getElementById('m-twd').textContent = rm(tot / rate);
+
+    var chips = [['all','全部']].concat(M_DAYS.map(function(d){ return [d,d]; }));
+    document.getElementById('m-days').innerHTML = chips.map(function(c){
+      return '<button type="button" data-d="'+c[0]+'" aria-pressed="'+(mFilter===c[0])+'">'+c[1]+'</button>';
+    }).join('');
+
+    var by = {};
+    shown.forEach(function(e){ by[e.k] = (by[e.k]||0) + thb(e); });
+    var keys = Object.keys(by).sort(function(a,b){ return by[b]-by[a]; });
+    document.getElementById('m-brk-wrap').hidden = !keys.length;
+    document.getElementById('m-brk').innerHTML = keys.map(function(k){
+      var pct = tot ? by[k]/tot*100 : 0;
+      return '<div class="b"><span>'+esc(k)+'</span><span class="bar"><i style="width:'+pct.toFixed(1)+'%;background:'+(M_CATC[k]||'var(--blue)')+'"></i></span><span class="v">'+money(by[k])+' · '+Math.round(pct)+'%</span></div>';
+    }).join('');
+
+    document.getElementById('m-list').innerHTML = shown.length ? shown.map(function(e){
+      return '<li><span class="t">'+esc(e.t || e.k)+'</span>'+
+        '<span class="m">'+esc(e.d)+' · '+esc(e.k)+' · '+esc(e.by || 'Jw')+' 付 · '+(M_PM[e.pm]||'')+'</span>'+
+        '<span class="a"><b>'+money(thb(e))+'</b><small>'+rm(thb(e) / rate)+'</small></span>'+
+        '<button type="button" class="del" data-id="'+esc(e.id)+'">删除</button></li>';
+    }).join('') : '<li class="mempty">'+(mFilter==='all'?'还没有记账，在上面记第一笔。':'这天还没有记账。')+'</li>';
+    renderSplit();
+  }
+
+  document.getElementById('m-days').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b) return;
+    mFilter = b.dataset.d; renderMoney();
+  });
+  document.querySelectorAll('.seg').forEach(function(seg){
+    seg.addEventListener('click', function(e){
+      var b = e.target.closest('button'); if (!b) return;
+      form[seg.dataset.f] = b.dataset.v;
+      seg.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed', String(x === b)); });
+    });
+  });
+  document.getElementById('m-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var a = parseFloat(document.getElementById('m-amt').value);
+    if (!(a > 0)) { msg('先填金额'); document.getElementById('m-amt').focus(); return; }
+    book.items.push({
+      id: Date.now().toString(36) + Math.random().toString(36).slice(2,6),
+      a: a, c: form.c, pm: form.pm, by: form.by,
+      k: document.getElementById('m-cat').value,
+      d: document.getElementById('m-day').value,
+      t: document.getElementById('m-note').value.trim(),
+      ts: Date.now()
+    });
+    mSave(M_KEY, book);
+    document.getElementById('m-amt').value = '';
+    document.getElementById('m-note').value = '';
+    msg('记好了'); renderMoney();
+  });
+  document.getElementById('m-list').addEventListener('click', function(e){
+    var b = e.target.closest('.del'); if (!b) return;
+    if (!b.classList.contains('armed')) {
+      b.classList.add('armed'); b.textContent = '再按一次删除';
+      setTimeout(function(){ if (b.isConnected) { b.classList.remove('armed'); b.textContent = '删除'; } }, 3000);
+      return;
+    }
+    var id = b.dataset.id;
+    book.items = book.items.filter(function(x){ return x.id !== id; });
+    mSave(M_KEY, book); renderMoney(); msg('删掉了');
+  });
+  document.getElementById('m-rate').addEventListener('change', function(){
+    var v = parseFloat(this.value);
+    if (v > 0) { rate = v; mSave(R_KEY, rate); cvNote(); cvT.value = ''; cvM.value = ''; renderMoney(); msg('汇率更新了'); } else { this.value = rate; }
+  });
+
+  function copyText(text, okMsg){
+    var ta = document.getElementById('m-copy');
+    function fallback(){ ta.value = text; ta.select(); try { document.execCommand('copy'); msg(okMsg); } catch(e){ msg('没办法自动复制'); } }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function(){ msg(okMsg); }, fallback);
+      } else { fallback(); }
+    } catch(e){ fallback(); }
+  }
+  document.getElementById('m-tsv').addEventListener('click', function(){
+    if (!book.items.length) { msg('还没有记账'); return; }
+    var rows = [['日期','分类','备注','谁付','金额','币别','泰铢','马币','付款'].join('\t')];
+    book.items.forEach(function(e){
+      rows.push([e.d, e.k, e.t, e.by || 'Jw', e.a, e.c, Math.round(thb(e)), (thb(e)/rate).toFixed(2), M_PM[e.pm]||''].join('\t'));
+    });
+    copyText(rows.join('\n'), '表格复制好了，可以贴到 Excel／Google 表格');
+  });
+  var clearBtn = document.getElementById('m-clear');
+  clearBtn.addEventListener('click', function(){
+    if (!book.items.length) { msg('本来就是空的'); return; }
+    if (!clearBtn.classList.contains('armed')) {
+      clearBtn.classList.add('armed'); clearBtn.textContent = '再按一次清空（无法恢复）';
+      setTimeout(function(){ clearBtn.classList.remove('armed'); clearBtn.textContent = '清空所有记账'; }, 3000);
+      return;
+    }
+    book.items = [];
+    mSave(M_KEY, book);
+    clearBtn.classList.remove('armed'); clearBtn.textContent = '清空所有记账';
+    renderMoney(); msg('清空了');
+  });
+  renderMoney();
+
+  /* 倒数：2/11 08:00 吉隆坡起飞（马来西亚时间 UTC+8；航班待定） */
+  var target = new Date('2027-02-11T08:00:00+08:00').getTime();
+  var endTrip = new Date('2027-02-15T20:10:00+08:00').getTime();
+  function pad(n){ return (n<10?'0':'')+n; }
+  function setCd(d,h,m){ document.getElementById('cd-d').textContent = d; document.getElementById('cd-h').textContent = h; document.getElementById('cd-m').textContent = m; }
+  function tick(){
+    var now = Date.now(), diff = target - now;
+    var note = document.getElementById('cd-note');
+    if (now > endTrip){ setCd('0','00','00'); note.textContent = '旅程已结束'; return; }
+    if (diff <= 0){ setCd('0','00','00'); note.textContent = '旅程进行中'; return; }
+    setCd(Math.floor(diff/86400000), pad(Math.floor(diff%86400000/3600000)), pad(Math.floor(diff%3600000/60000)));
+    note.textContent = '距离 2/11 08:00 起飞（航班待定）';
+  }
+  tick(); setInterval(tick, 30000);
+
+  renderTabs(); renderDay(); renderTodo();
+})();
+
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("sw.js").then(null, function () {});
+  });
+}
+</script></body>
+</html>
